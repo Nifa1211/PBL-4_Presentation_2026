@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBL Presentation | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
+        @keyframes flicker { 0%, 100% { background-color: #ffffff; } 50% { background-color: #fca5a5; } }
+        .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
+        .timer-stop { background-color: #991b1b !important; color: #ffffff !important; border: 3px solid #f87171 !important; animation: none; }
+    </style>
+</head>
+<body >
+
+    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
+        <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
+        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">12:00</span>
+    </div>
+
+    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="bg-white p-1 rounded flex items-center justify-center shadow-md" style="height: 48px; width: 48px;">
+                <img src="mujlogo.jpg" alt="MUJ" class="h-full w-auto object-contain" onerror="this.src='https://via.placeholder.com/50?text=MUJ'">
+            </div>
+            <div class="flex flex-col text-left">
+                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
+                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science & Engineering</span>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
+            <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
+            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
+            <a href="#results" class="hover:text-blue-400 transition">Results</a>
+            <a href="#team" class="hover:text-blue-400 transition">Team</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
+        
+        <section class="text-center">
+            <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">ID: 23FE10CSE00592</div>
+            <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight">
+                <span class="gradient-text uppercase">
+                    Revolutionizing Object Detection with Reinforcement Learning in Dynamic Environments
+                </span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
+                This work presents a review and comparative analysis of existing object detection models and adaptive AI technologies, focusing on performance trade-offs, efficiency constraints, and real-world deployment challenges.
+            </p>
+        </section>
+
+        <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
+            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
+                <h2 class="text-3xl font-extrabold mb-6">Problem Statement</h2>
+                <p class="text-slate-400 leading-relaxed text-justify">
+                    This study conducts a structured review and critical evaluation of existing object detection architectures and enabling technologies. While modern detectors achieve impressive benchmark accuracy, practical deployment reveals limitations related to latency, computational overhead, hardware constraints, environmental variability, and robustness. The analysis emphasizes the importance of evaluating detection systems across multiple metrics including accuracy, inference speed, and efficiency.
+                </p>
+            </div>
+            <div class="space-y-6">
+                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
+                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-2">Literature Review / Market Research</h3>
+                    <ul class="text-sm text-slate-500 italic space-y-2">
+                        <li>• Two-stage detectors prioritize precision and localization accuracy</li>
+                        <li>• One-stage detectors emphasize real-time inference capabilities</li>
+                        <li>• Lightweight architectures target embedded system deployment</li>
+                        <li>• Transformer-based models capture global contextual dependencies</li>
+                        <li>• Reinforcement Learning introduces adaptive decision mechanisms</li>
+                        <li>• MARL frameworks enable distributed perception strategies</li>
+                    </ul>
+                </div>
+                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
+                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Research Gap / Innovation</h3>
+                    <ul class="text-sm text-slate-500 italic space-y-2">
+                        <li>• Limited multi-metric comparative analyses</li>
+                        <li>• Overreliance on accuracy-only evaluation</li>
+                        <li>• Static detector behavior in dynamic environments</li>
+                        <li>• Insufficient efficiency-aware benchmarking</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" class="space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Methodology</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl text-center">
+                    <i class="fas fa-database text-blue-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Dataset / Input</h3>
+                    <p class="text-sm text-slate-500 text-justify">
+                        Comparative evaluations reference the Microsoft COCO dataset due to its scale diversity, multi-class annotations, and complex real-world scene structures. The dataset enables standardized benchmarking using metrics such as mAP while reflecting challenges like occlusion, scale variation, and background complexity.
+                    </p>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Model / Architecture</h3>
+                    <ul class="text-sm text-slate-500 italic space-y-1 text-left">
+                        <li>• YOLOv5 → High-speed detector</li>
+                        <li>• Faster R-CNN → Precision-oriented detector</li>
+                        <li>• SSD → Balanced detector</li>
+                        <li>• MobileNet-SSD → Efficiency-focused detector</li>
+                        <li>• Vision Transformers → Context-aware detector</li>
+                    </ul>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center border-2 border-green-500/20 bg-green-500/5">
+                    <i class="fab fa-python text-green-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-green-400">Live Execution</h3>
+                    <a href="https://github.com/Nifa1211/PBL-4_Presentation_2026.git" target="_blank" class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40">
+                        VIEW PAPER
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Results & <span class="text-blue-500">Analysis</span></h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="h-80"><canvas id="resultsChart"></canvas></div>
+                <div class="space-y-6">
+                    <p class="text-slate-500 text-sm italic text-justify leading-relaxed">
+                        Comparative analysis reveals distinct trade-offs across detection architectures. High-FPS models such as YOLOv5 excel in latency-sensitive environments, whereas Faster R-CNN prioritizes detection precision. MobileNet-SSD demonstrates strong efficiency for constrained hardware. Transformer-based detectors show superior contextual reasoning but introduce computational overhead.
+                        <br><br>
+                        Suggestions: Future detection systems should adopt unified optimization strategies balancing accuracy, inference speed, and efficiency simultaneously. Hybrid CNN-transformer models, hardware-aware designs, and adaptive reinforcement learning mechanisms represent promising directions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="text-center pt-10 border-t border-slate-900">
+            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
+                    <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
+                    <p class="font-black text-xl text-slate-100">Ms. Neha Singh</p>
+                </div>
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Student</p>
+                    <p class="font-black text-xl text-slate-100">Eshanya Padial</p>
+                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00592</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
+        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
+        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science & Engineering • 2026</p>
+    </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    let totalSeconds = 12 * 60;
+    let timer = null;
+
+    function startTimer() {
+      updateDisplay();
+
+      timer = setInterval(() => {
+        totalSeconds--;
+        updateDisplay();
+
+        if (totalSeconds <= 120 && totalSeconds > 0) {
+          document.getElementById('timerContainer').classList.add('timer-warning');
+          document.getElementById('timerIcon').classList.replace(
+            'fa-hourglass-start',
+            'fa-hourglass-half'
+          );
+        }
+
+        if (totalSeconds <= 0) {
+          clearInterval(timer);
+          document.getElementById('timerContainer').classList.remove('timer-warning');
+          document.getElementById('timerContainer').classList.add('timer-stop');
+          document.getElementById('displayTime').innerText = "00:00";
+          document.getElementById('timerIcon').classList.replace(
+            'fa-hourglass-half',
+            'fa-hourglass-end'
+          );
+        }
+      }, 1000);
+    }
+
+    function updateDisplay() {
+      let m = Math.floor(totalSeconds / 60);
+      let s = totalSeconds % 60;
+
+      document.getElementById('displayTime').innerText =
+        `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    // ✅ START TIMER SAFELY
+    startTimer();
+
+    // ✅ CHART INITIALIZATION (safe after DOM load)
+    const ctx = document.getElementById('resultsChart').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['YOLOv5', 'Faster R-CNN', 'SSD', 'MobileNet-SSD', 'ViT / DETR'],
+        datasets: [
+          { label: 'FPS', data: [140, 18, 46, 72, 22] },
+          { label: 'mAP', data: [50, 60, 48, 42, 62] },
+          { label: 'Efficiency', data: [88, 52, 70, 85, 58] }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#94a3b8' } }
+        },
+        scales: {
+          y: {
+            ticks: { color: '#475569' },
+            grid: { color: '#ffffff10' }
+          },
+          x: {
+            ticks: { color: '#475569' },
+            grid: { display: false }
+          }
+        }
+      }
+    });
+
+  });
+</script>
+
+</body>
+</html> 
