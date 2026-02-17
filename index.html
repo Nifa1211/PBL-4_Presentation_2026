@@ -24,12 +24,10 @@
     <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
         <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
-       <button onclick="startTimer()" class="ml-4 px-4 py-1 text-xs font-bold bg-blue-600 text-white rounded-full hover:bg-blue-500 transition">
-    START
-</button>
-
-<button onclick="stopTimer()" class="px-4 py-1 text-xs font-bold bg-red-600 text-white rounded-full hover:bg-red-500 transition">
-    STOP
+      <button onclick="toggleTimer()"
+    class="ml-3 w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-500 transition"
+    title="Play / Pause">
+    <i class="fas fa-play text-sm" id="playPauseIcon"></i>
 </button>
 
 
@@ -66,7 +64,7 @@
             <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">ID: 23FE10CSE00592</div>
             <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight">
                 <span class="gradient-text uppercase">
-                    Revolutionizing Object Detection with Reinforcement Learning in Dynamic Environments
+                    Revolutionizing Object Detection with Multi-Agent Reinforcement Learning in Dynamic Environments
                 </span>
             </h1>
             <p class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
@@ -195,10 +193,23 @@ function stopTimer() {
   timer = null;
 
   document.getElementById('timerIcon').classList.replace(
-    'fa-hourglass-half',
-    'fa-hourglass-end'
-  );
+  'fa-hourglass-half',
+  'fa-hourglass-start'
+);
+
 }
+function toggleTimer() {
+  if (timer === null) {
+   
+    startTimer();
+    document.getElementById('playPauseIcon').classList.replace('fa-play', 'fa-pause');
+  } else {
+    
+    stopTimer();
+    document.getElementById('playPauseIcon').classList.replace('fa-pause', 'fa-play');
+  }
+}
+
 
 
     function updateDisplay() {
