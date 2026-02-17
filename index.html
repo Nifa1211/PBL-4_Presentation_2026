@@ -169,7 +169,7 @@
         <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science & Engineering • 2026</p>
     </footer>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  
 
     let totalSeconds = 0;
 let timer = null;
@@ -220,7 +220,7 @@ function toggleTimer() {
         `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
 
-    
+    document.addEventListener("DOMContentLoaded", () => {
 
     // ✅ CHART INITIALIZATION (safe after DOM load)
     const ctx = document.getElementById('resultsChart').getContext('2d');
