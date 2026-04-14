@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBL Presentation | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .verdict-badge { background: linear-gradient(135deg, rgba(96,165,250,0.15), rgba(168,85,247,0.15)); border: 1px solid rgba(96,165,250,0.3); }
+
+        #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
+        @keyframes flicker { 0%,100% { background-color:#ffffff; } 50% { background-color:#fca5a5; } }
+        .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
+        .timer-stop { background-color: #991b1b !important; color: #ffffff !important; border: 3px solid #f87171 !important; animation: none; }
+
+        .model-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .model-card:hover { transform: translateY(-4px); }
+        .winner { border-color: rgba(96,165,250,0.6) !important; background: rgba(96,165,250,0.05) !important; }
+        .loser  { border-color: rgba(239,68,68,0.3)  !important; background: rgba(239,68,68,0.03) !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Timer -->
+    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
+        <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
+        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="bg-white p-1 rounded flex items-center justify-center shadow-md" style="height:48px;width:48px;">
+                <img src="mujlogo.jpg" alt="MUJ" class="h-full w-auto object-contain" onerror="this.src='https://via.placeholder.com/50?text=MUJ'">
+            </div>
+            <div class="flex flex-col text-left">
+                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
+                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science & Engineering</span>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
+            <a href="#problem"     class="hover:text-blue-400 transition">Problem</a>
+            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
+            <a href="#results"     class="hover:text-blue-400 transition">Results</a>
+            <a href="#verdict"     class="hover:text-blue-400 transition">Verdict</a>
+            <a href="#team"        class="hover:text-blue-400 transition">Team</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
+
+        <!-- ── HERO ── -->
+        <section class="text-center">
+            <div class="flex flex-wrap justify-center gap-3 mb-6">
+                <div class="px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono uppercase tracking-widest">23FE10CSE00592</div>
+                <div class="px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono uppercase tracking-widest">23FE10CSE00455</div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-8 uppercase leading-tight">
+                <span class="gradient-text">
+                    Comparative Analysis of Deep Learning Models for Face Anti-Spoofing in Secure Biometric Authentication
+                </span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-base leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
+                A rigorous, unified comparison of three CNN architectures — <strong class="text-slate-200">MobileNetV2, ResNet50, and EfficientNetB0</strong> — evaluated across accuracy, AUC, efficiency, and deployment viability, culminating in a clear, evidence-backed recommendation for real-world integration into live biometric authentication systems.
+            </p>
+        </section>
+
+        <!-- ── PROBLEM ── -->
+        <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
+            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-between border-l-4 border-blue-600">
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-5">Problem Statement</h2>
+                    <p class="text-slate-400 leading-relaxed text-justify text-sm">
+                        Facial biometric authentication is deployed at scale across banking, mobile access, and physical security. Yet the same camera-based convenience that makes it popular also makes it exploitable — attackers bypass these systems using printed photographs, looped video replays, or AI-generated deepfakes that are growing cheaper and more convincing by the day.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed text-justify text-sm mt-4">
+                        Conventional detection methods are no longer sufficient. What the field needs is a deep learning-based anti-spoofing layer that is not just accurate in controlled settings, but reliable, fast, and efficient enough to operate in real time on real hardware. The problem is that no study provides a fair, head-to-head comparison of candidate architectures against this deployment standard.
+                    </p>
+                </div>
+                <div class="mt-8 pt-6 border-t border-slate-800/60 verdict-badge rounded-2xl px-5 py-4">
+                    <p class="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-1">Core Research Aim</p>
+                    <p class="text-slate-200 text-sm font-semibold leading-snug">Benchmark MobileNetV2, ResNet50 &amp; EfficientNetB0 under an identical experimental framework — and identify the single architecture best suited for production deployment in a real-world face anti-spoofing system.</p>
+                </div>
+            </div>
+
+            <div class="space-y-5">
+                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
+                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-3">Landscape of Existing Approaches</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex gap-3"><span class="text-slate-300 font-semibold min-w-[130px]">Traditional (LBP/HOG)</span><span class="text-slate-500">Low cost, fast — but brittle under varying lighting, pose, and noise</span></div>
+                        <div class="flex gap-3"><span class="text-slate-300 font-semibold min-w-[130px]">CNN-based</span><span class="text-slate-500">Automatic feature extraction, high accuracy — at the cost of compute</span></div>
+                        <div class="flex gap-3"><span class="text-slate-300 font-semibold min-w-[130px]">Lightweight CNNs</span><span class="text-slate-500">Optimised for edge &amp; mobile — minor representational trade-off</span></div>
+                        <div class="flex gap-3"><span class="text-slate-300 font-semibold min-w-[130px]">Transformers</span><span class="text-slate-500">Best robustness — high complexity, impractical for constrained hardware</span></div>
+                    </div>
+                </div>
+                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
+                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-3">Why This Study Is Needed</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex gap-3"><span class="text-red-400/80 font-semibold">✗</span><span class="text-slate-500">Prior work evaluates models in isolation — no unified, fair benchmark exists</span></div>
+                        <div class="flex gap-3"><span class="text-red-400/80 font-semibold">✗</span><span class="text-slate-500">Accuracy-only evaluations ignore inference speed and computational cost</span></div>
+                        <div class="flex gap-3"><span class="text-red-400/80 font-semibold">✗</span><span class="text-slate-500">No clear baseline for real-time anti-spoofing system integration</span></div>
+                        <div class="flex gap-3"><span class="text-green-400/80 font-semibold">✓</span><span class="text-slate-400">This study fills all three gaps with a standardised pipeline and multi-metric evaluation</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── METHODOLOGY ── -->
+        <section id="methodology" class="space-y-10">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Methodology</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="glass p-8 rounded-3xl">
+                    <i class="fas fa-database text-blue-500 text-3xl mb-4 block text-center"></i>
+                    <h3 class="font-bold mb-3 uppercase text-xs tracking-widest text-center">Dataset &amp; Preprocessing</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed text-justify">
+                        Kaggle's Deepfake &amp; Real Images dataset — 112K training / 28K validation samples, balanced across real and fake classes. Images resized to 224×224 px, normalised to [0,1]. Augmentation: random horizontal flips, brightness (±15%), contrast (0.85–1.15). A tf.data pipeline with batching, prefetching, and caching ensures consistent GPU throughput across all model runs.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-800 grid grid-cols-2 gap-2 text-center">
+                        <div><span class="block text-slate-200 font-bold text-lg">140K</span><span class="text-[10px] text-slate-600 uppercase tracking-wider">Total Images</span></div>
+                        <div><span class="block text-slate-200 font-bold text-lg">50/50</span><span class="text-[10px] text-slate-600 uppercase tracking-wider">Class Balance</span></div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl">
+                    <i class="fas fa-microchip text-purple-500 text-3xl mb-4 block text-center"></i>
+                    <h3 class="font-bold mb-3 uppercase text-xs tracking-widest text-center">Three Models, One Framework</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="glass p-3 rounded-xl">
+                            <p class="text-slate-200 font-semibold">MobileNetV2 <span class="text-slate-500 font-normal text-xs">~3.4M params</span></p>
+                            <p class="text-slate-500 text-xs mt-1">Depthwise separable convolutions — designed for edge devices and real-time inference</p>
+                        </div>
+                        <div class="glass p-3 rounded-xl">
+                            <p class="text-slate-200 font-semibold">ResNet50 <span class="text-slate-500 font-normal text-xs">~25M params</span></p>
+                            <p class="text-slate-500 text-xs mt-1">Residual connections — deep feature extraction, strong but computationally heavy</p>
+                        </div>
+                        <div class="glass p-3 rounded-xl">
+                            <p class="text-slate-200 font-semibold">EfficientNetB0 <span class="text-slate-500 font-normal text-xs">~5.3M params</span></p>
+                            <p class="text-slate-500 text-xs mt-1">Compound scaling — theoretically balanced, sensitive to fine-tuning conditions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl">
+                    <i class="fas fa-sliders-h text-green-500 text-3xl mb-4 block text-center"></i>
+                    <h3 class="font-bold mb-3 uppercase text-xs tracking-widest text-center">Training Configuration</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-slate-800 pb-1"><span class="text-slate-500">Backbone</span><span class="text-slate-300 font-semibold">Frozen (Transfer Learning)</span></div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1"><span class="text-slate-500">Head</span><span class="text-slate-300 font-semibold">GAP → BN → Dense(256) → Sigmoid</span></div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1"><span class="text-slate-500">Optimizer / LR</span><span class="text-slate-300 font-semibold">Adam / 0.001</span></div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1"><span class="text-slate-500">Loss</span><span class="text-slate-300 font-semibold">Binary Cross-Entropy</span></div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1"><span class="text-slate-500">Batch / Epochs</span><span class="text-slate-300 font-semibold">32 / 3</span></div>
+                        <div class="flex justify-between border-b border-slate-800 pb-1"><span class="text-slate-500">Callbacks</span><span class="text-slate-300 font-semibold">EarlyStopping, ReduceLROnPlateau</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Platform</span><span class="text-slate-300 font-semibold">Kaggle · Tesla T4 GPU</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluation metrics strip -->
+            <div class="glass rounded-3xl p-6">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center mb-5">Evaluation Metrics — Applied Uniformly Across All Three Models</p>
+                <div class="grid grid-cols-5 gap-4 text-center">
+                    <div><i class="fas fa-bullseye text-blue-400 mb-2 text-lg block"></i><p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Accuracy</p><p class="text-[10px] text-slate-600 mt-1">Overall correctness</p></div>
+                    <div><i class="fas fa-chart-area text-purple-400 mb-2 text-lg block"></i><p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">AUC</p><p class="text-[10px] text-slate-600 mt-1">Primary — handles class imbalance</p></div>
+                    <div><i class="fas fa-crosshairs text-green-400 mb-2 text-lg block"></i><p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Precision</p><p class="text-[10px] text-slate-600 mt-1">False positive control</p></div>
+                    <div><i class="fas fa-search text-yellow-400 mb-2 text-lg block"></i><p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Recall</p><p class="text-[10px] text-slate-600 mt-1">Spoof detection rate</p></div>
+                    <div><i class="fas fa-balance-scale text-pink-400 mb-2 text-lg block"></i><p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">F1-Score</p><p class="text-[10px] text-slate-600 mt-1">Precision–recall balance</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── RESULTS ── -->
+        <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Results &amp; <span class="text-blue-500">Analysis</span></h2>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-14">
+                <div class="h-80"><canvas id="resultsChart"></canvas></div>
+                <div class="space-y-4 text-sm text-slate-500 leading-relaxed">
+                    <p><span class="text-blue-300 font-bold">MobileNetV2</span> was the clear standout — 82.38% accuracy and 90.98% AUC, with metrics improving steadily across all three epochs. Its lightweight design enabled training in just 8.4 minutes with strong generalisation to unseen data, confirming its suitability for real-world deployment.</p>
+                    <p><span class="text-slate-300 font-semibold">ResNet50</span> showed solid feature extraction, reaching 77.74% accuracy and 87.31% AUC, with notably strong recall (89.02%). However, at 20.2 minutes training time — 2.4× longer than MobileNetV2 — and 25M parameters, it exceeds the compute budget for real-time or edge applications.</p>
+                    <p><span class="text-red-400/80 font-semibold">EfficientNetB0</span> failed to converge. Accuracy flatlined at ~50%, precision and recall stayed at zero, and AUC of 0.55 reflected near-random classification — indicating underfitting due to insufficient fine-tuning depth under the constrained training budget.</p>
+                </div>
+            </div>
+
+            <!-- Metrics Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-center">
+                    <thead>
+                        <tr class="text-[10px] uppercase tracking-widest text-slate-500 border-b border-slate-800">
+                            <th class="pb-3 text-left pl-3">Model</th>
+                            <th class="pb-3">Accuracy</th>
+                            <th class="pb-3">AUC</th>
+                            <th class="pb-3">Precision</th>
+                            <th class="pb-3">Recall</th>
+                            <th class="pb-3">F1-Score</th>
+                            <th class="pb-3">Train Time</th>
+                            <th class="pb-3">Verdict</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-900 text-blue-300 font-bold">
+                            <td class="py-3 text-left pl-3">MobileNetV2</td>
+                            <td>82.38%</td><td>90.98%</td><td>81.99%</td><td>82.59%</td><td>82.37%</td><td>8.4 min</td>
+                            <td><span class="px-2 py-0.5 bg-blue-500/20 text-blue-300 rounded-full text-[10px] font-bold">✓ Selected</span></td>
+                        </tr>
+                        <tr class="border-b border-slate-900 text-slate-400">
+                            <td class="py-3 text-left pl-3">ResNet50</td>
+                            <td>77.74%</td><td>87.31%</td><td>72.41%</td><td>89.02%</td><td>79.86%</td><td>20.2 min</td>
+                            <td><span class="px-2 py-0.5 bg-slate-700/40 text-slate-400 rounded-full text-[10px] font-bold">Moderate</span></td>
+                        </tr>
+                        <tr class="text-red-400/60">
+                            <td class="py-3 text-left pl-3">EfficientNetB0</td>
+                            <td>50.42%</td><td>55.47%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>8.1 min</td>
+                            <td><span class="px-2 py-0.5 bg-red-900/30 text-red-400/70 rounded-full text-[10px] font-bold">✗ Underfit</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ── VERDICT ── -->
+        <section id="verdict" class="space-y-8">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">Deployment <span class="text-blue-500">Verdict</span></h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="model-card glass p-8 rounded-3xl border winner flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Selected for Deployment</span>
+                        <i class="fas fa-check-circle text-blue-400 text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-black text-white mb-2">MobileNetV2</p>
+                    <p class="text-sm text-slate-400 leading-relaxed flex-1">Highest accuracy (82.38%) and best AUC (90.98%) with the fastest training time (8.4 min). Its lightweight structure, stable convergence, and strong generalisation make it the ideal backbone for real-time mobile and edge-device deployment without sacrificing detection reliability.</p>
+                    <div class="mt-4 pt-4 border-t border-blue-500/20 text-[10px] text-blue-400 font-bold uppercase tracking-widest">Real-time · Mobile · Edge-ready</div>
+                </div>
+                <div class="model-card glass p-8 rounded-3xl flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Viable with Trade-offs</span>
+                        <i class="fas fa-exclamation-circle text-slate-400 text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-black text-white mb-2">ResNet50</p>
+                    <p class="text-sm text-slate-400 leading-relaxed flex-1">Strong recall (89.02%) and solid AUC make it a capable detector, but 25M parameters and 20+ minutes of training time place it outside practical reach for real-time systems. Best suited to server-side or offline use cases where compute is not a constraint.</p>
+                    <div class="mt-4 pt-4 border-t border-slate-700 text-[10px] text-slate-500 font-bold uppercase tracking-widest">Server-side · Offline · High compute</div>
+                </div>
+                <div class="model-card glass p-8 rounded-3xl border loser flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-[10px] font-bold text-red-400/70 uppercase tracking-widest">Not Viable (Current Config)</span>
+                        <i class="fas fa-times-circle text-red-400/70 text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-black text-white mb-2">EfficientNetB0</p>
+                    <p class="text-sm text-slate-400 leading-relaxed flex-1">Despite theoretical advantages, EfficientNetB0 failed to learn meaningful patterns under constrained 3-epoch training — stalling at 50% accuracy. Its compound scaling demands deeper fine-tuning and a more diverse dataset to unlock its potential.</p>
+                    <div class="mt-4 pt-4 border-t border-red-500/20 text-[10px] text-red-400/60 font-bold uppercase tracking-widest">Needs: Extended training · Deeper fine-tuning</div>
+                </div>
+            </div>
+
+            <!-- Future directions -->
+            <div class="glass p-8 rounded-3xl">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-5">Future Directions — Building on This Foundation</p>
+                <div class="grid md:grid-cols-4 gap-5 text-sm text-slate-500">
+                    <div><i class="fas fa-video text-blue-400 mb-2 block text-xl"></i><strong class="text-slate-300 block mb-1">Video-based Liveness</strong>Temporal analysis of eye blink and micro-expressions for stronger spoof resistance</div>
+                    <div><i class="fas fa-brain text-purple-400 mb-2 block text-xl"></i><strong class="text-slate-300 block mb-1">Hybrid CNN-Transformer</strong>Combine texture features with global context to counter advanced deepfake attacks</div>
+                    <div><i class="fas fa-compress-arrows-alt text-green-400 mb-2 block text-xl"></i><strong class="text-slate-300 block mb-1">Quantization &amp; Pruning</strong>Further compress MobileNetV2 for ultra-low-latency inference on IoT and embedded hardware</div>
+                    <div><i class="fas fa-layer-group text-yellow-400 mb-2 block text-xl"></i><strong class="text-slate-300 block mb-1">Multimodal Biometrics</strong>Integrate depth sensing or infrared imaging to resist 3D mask and screen-replay attacks</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── TEAM ── -->
+        <section id="team" class="text-center pt-10 border-t border-slate-900">
+            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
+                    <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
+                    <p class="font-black text-xl text-slate-100">Ms. Neha Singh</p>
+                    <p class="text-[9px] text-slate-600 mt-1">Dept. of CSE, MUJ</p>
+                </div>
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Student</p>
+                    <p class="font-black text-xl text-slate-100">Eshanya Padial</p>
+                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00592</p>
+                    <p class="text-[9px] text-slate-600 mt-2 italic">Research · Model Analysis · Frontend</p>
+                </div>
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Student</p>
+                    <p class="font-black text-xl text-slate-100">Jai Sachdeva</p>
+                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00455</p>
+                    <p class="text-[9px] text-slate-600 mt-2 italic">Backend · System Integration · Database</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
+        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
+        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science &amp; Engineering · Jan–May 2026</p>
+    </footer>
+
+    <script>
+        let elapsed = 0;
+        let timerStarted = false;
+        const WARN_AT = 10 * 60;
+        const STOP_AT = 12 * 60;
+
+        function startTimer() {
+            if (timerStarted) return;
+            timerStarted = true;
+            updateDisplay();
+            setInterval(() => {
+                elapsed++;
+                updateDisplay();
+
+                if (elapsed >= WARN_AT && elapsed < STOP_AT) {
+                    document.getElementById('timerContainer').classList.add('timer-warning');
+                    document.getElementById('timerIcon').className = 'fas fa-hourglass-half text-red-600 text-2xl';
+                }
+                if (elapsed >= STOP_AT) {
+                    document.getElementById('timerContainer').classList.remove('timer-warning');
+                    document.getElementById('timerContainer').classList.add('timer-stop');
+                    document.getElementById('timerIcon').className = 'fas fa-hourglass-end text-white text-2xl';
+                }
+            }, 1000);
+        }
+
+        function updateDisplay() {
+            let m = Math.floor(elapsed / 60);
+            let s = elapsed % 60;
+            document.getElementById('displayTime').innerText =
+                `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', startTimer);
+        window.addEventListener('load', startTimer);
+        // Fallback: start immediately if DOM already ready
+        if (document.readyState !== 'loading') startTimer();
+
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['MobileNetV2', 'ResNet50', 'EfficientNetB0'],
+                datasets: [
+                    { label: 'Accuracy (%)', data: [82.38, 77.74, 50.42], backgroundColor: 'rgba(96,165,250,0.75)', borderRadius: 6 },
+                    { label: 'AUC (%)',      data: [90.98, 87.31, 55.47], backgroundColor: 'rgba(168,85,247,0.75)', borderRadius: 6 },
+                    { label: 'F1-Score (%)', data: [82.37, 79.86,  0.00], backgroundColor: 'rgba(52,211,153,0.75)', borderRadius: 6 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } },
+                scales: {
+                    y: { ticks: { color: '#475569' }, grid: { color: '#ffffff10' }, max: 100, min: 0 },
+                    x: { ticks: { color: '#94a3b8' }, grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
